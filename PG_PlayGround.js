@@ -17,8 +17,9 @@ class PG_PlayGround{
     this.missle = resourcePreLoader.GetImage('file/img/object/missle.svg');
     this.alert = resourcePreLoader.GetImage('file/img/object/alert.svg');
     this.leg = resourcePreLoader.GetImage('file/img/object/leg_00.svg');
-
+    this.explode = false;
     this.background = back
+    this.circles = [];
 
     // ObjectTpye 0 : 정적인 배경 추가요소 << 아무 기능없음
     // ObjectType 1 : 지속적으로 회전하는 오브젝트 요소 << Rotate
@@ -42,12 +43,31 @@ class PG_PlayGround{
     {
       this.arrObjects[i].Render( ctx );
     }
+    if(this.explode){
+      for(var j = 0; j < this.circles.length; j++){
+        var c = this.circles[j]
+        ctx.beginPath();
+        ctx.arc(c.x, c.y, c.radius, 0, Math.PI*2, false);
+        ctx.fillStyle = "rgba("+c.r+", "+c.g+", "+c.b+", 0.9)";
+        ctx.fill();
+        c.x += c.vx * 2;
+        c.y += c.vy * 2;
+        c.radius -= .09;
+        if(c.radius < 0 )
+        {
+          this.circles.splice(j, 1);
+        }
+        if(this.circles.length <= 0){
+          this.explode = false;
+        }
+      }
+    }
   }
   Update(speed){
     for(var i=0; i<this.arrObjects.length; i++)
     {
       var obj = this.arrObjects[i];
-      if(obj.objectType == 0 || obj.objectType == 1){
+      if(obj.objectType == 0 || obj.objectType == 1 || obj.objectType == 9 || obj.objectType == 8 || obj.objectType == 10){
         obj.Translate(-speed, 0)
       }
       else if(obj.objectType == 2){
@@ -157,13 +177,82 @@ class PG_PlayGround{
             playGameState.Notification( 1 );
           }
         }
-        // if(player.x )
       }
       else if(obj.objectType == 6){
-        if( obj.x < player.right && obj.y + obj.height > player.top
-                 && obj.x + obj.width > player.left && obj.y< player.bottom ){
-                   playGameState.Notification( 1 );
+        if( obj.x < player.right && obj.y + 60 + 80 > player.top
+                 && obj.x + obj.width > player.left && obj.y + 60 < player.bottom ){
+                   for (var k = 0; k < 100; k++) {
+                     this.circles.push({
+                       x : obj.x + obj.width / 2,
+                       y : obj.y + obj.height / 2,
+                       radius : 3 +Math.random()*3,
+                       vx : -5 + Math.random()*10,
+                       vy : -5 + Math.random()*10,
+                       r : Math.round(Math.random())*30 ,
+                       g : Math.round(Math.random())*30 ,
+                       b : Math.round(Math.random())*30 ,
+                     })
+                   }
+                   this.explode = true;
+                   this.arrObjects.splice(i, 1);
+                   this.AddGrapicObject( this.objectNum );
+
                  }
+        else{
+          if( obj.x < player.right && obj.y + obj.height > player.top
+                   && obj.x + obj.width > player.left && obj.y< player.bottom ){
+                     playGameState.Notification( 1 );
+                   }
+        }
+
+      }
+      else if(obj.objectType == 9 || obj.objectType == 8){
+        if(obj.objectType == 8){
+          var dx = obj.width / 2 - 20;
+        }
+        else{
+          var dx = 0;
+        }
+        if( obj.x + dx < player.right && obj.y + obj.height > player.top
+                 && obj.x + dx+ obj.width / 2 > player.left && obj.y< player.bottom ){
+
+                 }
+        else{
+          var distance = [];
+          var x = [player.left, player.right, player.left, player.right];
+          var y = [player.top, player.top, player.bottom, player.bottm];
+          for(var i=0; i<4; i++){
+            var tmpX = x[i] - (obj.x + obj.width / 2);
+            var tmpY = y[i] - (obj.y + obj.width / 2);
+            distance[i] = Math.sqrt(tmpX*tmpX + tmpY*tmpY);
+            if(distance[i] < obj.width / 2 - 10){
+              playGameState.Notification( 1 );
+            }
+          }
+        }
+      }
+      else if(obj.objectType == 10){
+        var distance = [];
+        var x = [player.left, player.right, player.left, player.right];
+        var y = [player.top, player.top, player.bottom, player.bottm];
+        for(var i=0; i<4; i++){
+          var tmpX = x[i] - (obj.x + obj.width / 2);
+          var tmpY = y[i] - (obj.y + obj.width / 2);
+          distance[i] = Math.sqrt(tmpX*tmpX + tmpY*tmpY);
+          if(distance[i] < obj.width / 2 - 10){
+            var distance = [];
+            var x = [player.left, player.right, player.left, player.right];
+            var y = [player.top, player.top, player.bottom, player.bottm];
+            for(var i=0; i<4; i++){
+              var tmpX = x[i] - (obj.x + obj.width / 1.5);
+              var tmpY = y[i] - (obj.y + obj.width / 2);
+              distance[i] = Math.sqrt(tmpX*tmpX + tmpY*tmpY);
+              if(distance[i] < obj.width / 2 - 10){
+                playGameState.Notification( 1 );
+              }
+            }
+          }
+        }
       }
     }
   }

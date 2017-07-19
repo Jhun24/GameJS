@@ -50,7 +50,7 @@ class PG_BottomPlayGround extends PG_PlayGround{
       obj.SetSize(300, 300);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
-    if( type == 6 )
+    else if( type == 6 )
     {
       obj = new GraphicObject( this.wheel_out, 2 )
       obj2 = new GraphicObject( this.wheel_in, -2 )
@@ -60,7 +60,7 @@ class PG_BottomPlayGround extends PG_PlayGround{
       obj2.SetSize(150, 150);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
-    if( type == 7 ){
+    else if( type == 7 ){
       obj = new GraphicObject(this.missle, 4)
       obj2 = new GraphicObject(this.alert, 5)
       var objY = Math.floor(Math.random()*canvasHeight - 120)+50
@@ -70,7 +70,7 @@ class PG_BottomPlayGround extends PG_PlayGround{
       obj2.SetSize(20 / 1.5, 60 / 1.5);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
-    if(type == 8 ){
+    else if(type == 8 ){
       obj = new GraphicObject(this.leg, 6);
       obj.SetPosition(canvasWidth - 50, canvasHeight);
       obj.SetSize(50, canvasHeight);

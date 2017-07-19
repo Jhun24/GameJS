@@ -62,9 +62,6 @@ function onGameInit()
     soundSystem.AddSound( "file/sound/background.mp3", 1 );
     soundSystem.AddSound( "file/sound/background2.mp3", 1 );
 
-
-
-
     // 게임 초기 시작 상태 설정
 
     canvasWidth = 640

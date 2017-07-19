@@ -78,8 +78,6 @@ class PGPlayer{
         this.dy += 7.8 / 60
         this.y += this.dy;
       }
-
-
     }
     if( this.isRight == true )
     {

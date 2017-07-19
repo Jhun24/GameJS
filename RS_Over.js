@@ -8,6 +8,9 @@ class OverState{
     this.playground = ground;
     this.distance = distance;
     this.distanceNow = 0;
+    this.distanceColor = "#A57164"
+    this.rank = "Bronze";
+    this.distanceNowNum = 0;
     this.Init();
   }
   Init(){
@@ -15,7 +18,7 @@ class OverState{
     this.background.frontBackgroundSpeed = 0.5 * this.background.gameSpeed;
     this.background.middleBackgroundSpeed = 0.2 * this.background.gameSpeed;
     this.background.backgroundSpeed = 0.05 * this.background.gameSpeed;
-    this.totalDis = 400;
+    this.totalDis = 100;
   }
   Render(){
     var canvas = document.getElementById("canvas");
@@ -52,16 +55,27 @@ class OverState{
     if(!this.explode){
       var num = Math.floor(this.distance).toString();
       var numDigit = num.length;
-      ctx.fillText(this.distanceNow.toFixed(2)+"M", (canvasWidth / 2 - 80 - (numDigit)*10) , canvasHeight / 2 - 100);
+      ctx.fillText(this.distanceNowNum.toFixed(2)+"M", (canvasWidth / 2 - 80 - (numDigit)*10) , canvasHeight / 2 - 100);
       ctx.font = '84pt league Gothic'
       ctx.fillStyle = "white"
-      ctx.fillText(this.distanceNow.toFixed(2)+"M", (canvasWidth / 2 - 80 - (numDigit)*10) - 3 , canvasHeight / 2 - 100 - 5);
+      ctx.fillText(this.distanceNowNum.toFixed(2)+"M", (canvasWidth / 2 - 80 - (numDigit)*10) - 3 , canvasHeight / 2 - 100 - 5);
       // ctx.fillText(this.distanceNow.toFixed(2)+'M', canvasWidth / 2 - 70, )
       ctx.save();
       ctx.fillStyle = "white"
       ctx.fillRect(canvasWidth / 2 - 135, canvasHeight / 2 + 20, 100 * 3, 7);
-      ctx.fillStyle = "gray"
+      ctx.fillStyle = this.distanceColor;
+      ctx.font = '50pt league Gothic'
       ctx.fillRect(canvasWidth / 2 - 135, canvasHeight / 2 + 20, (this.distanceNow / this.totalDis * 100) * 3, 7);
+      if(this.rank == "Diamond"){
+        ctx.fillText(this.rank, canvasWidth / 2 - 70, canvasHeight / 2 + 40);
+      }
+      else if(this.rank == "Gold"){
+        ctx.fillText(this.rank, canvasWidth / 2 - 30, canvasHeight / 2 + 40);
+      }
+      else{
+        ctx.fillText(this.rank, canvasWidth / 2 - 50, canvasHeight / 2 + 40);
+      }
+
 
       ctx.restore();
 
@@ -77,7 +91,32 @@ class OverState{
     this.bottomPlayground.Update(this.background.frontBackgroundSpeed);
     if(!this.explode){
       if(this.distanceNow <= this.distance){
+        if(this.distanceNow >= this.totalDis){
+          this.distanceNow = 0;
+          this.distance -= this.totalDis;
+          if(this.distanceColor == "#A57164"){
+            this.distanceColor = "#C0C0C0";
+            this.rank = "Silver"
+            this.totalDis += 30
+          }
+          else if(this.distanceColor == "#C0C0C0"){
+            this.distanceColor = "#ffd700";
+            this.rank = "Gold"
+            this.totalDis += 30
+          }
+          else if(this.distanceColor == "#ffd700"){
+            this.distanceColor = "#b9f2ff";
+            this.rank = "Diamond"
+            this.totalDis += 30
+          }
+          else if(this.distanceColor == "#b9f2ff"){
+            this.distanceColor = "##7e9c68";
+            this.rank = "Master"
+            this.totalDis += 30
+          }
+        }
         this.distanceNow += 1
+        this.distanceNowNum += 1
       }
     }
 

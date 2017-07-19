@@ -1,7 +1,7 @@
 class DebugSystem{
   constructor() {
     this.debugMode = true;
-    this.useAlert = false;
+    this.useAlert = true;
   }
 
   Log(type, msg){

@@ -9,38 +9,43 @@ class PG_TopPlayGround extends PG_PlayGround{
     var obj;
     var obj2;
     if ( type == -1 ){
-      obj = new GraphicObject( this.object00, 0)
+      obj = new GraphicObject( this.object00, 9)
       obj.SetPosition(canvasWidth + canvasWidth / 2, -150);
       obj.SetSize(300, 300);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
-    if( type == 0 )
+    else if( type == 0 )
     {
-      obj = new GraphicObject( this.object00, 0)
+      console.log('object00');
+      obj = new GraphicObject( this.object00, 9)
       obj.SetPosition(canvasWidth, -150);
       obj.SetSize(300, 300);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
     else if( type == 1 ){
-      obj = new GraphicObject( this.object01, 0)
+      console.log('object01');
+      obj = new GraphicObject( this.object01, 8)
       obj.SetPosition(canvasWidth, -150);
       obj.SetSize(300, 300);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
     else if( type == 2 ){
-      obj = new GraphicObject( this.object02, 0)
+      console.log('object02');
+      obj = new GraphicObject( this.object02, 1)
       obj.SetPosition(canvasWidth, -150);
       obj.SetSize(300, 300);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
     else if( type == 3 ){
-      obj = new GraphicObject( this.object03, 0)
+      console.log('object03');
+      obj = new GraphicObject( this.object03, 9)
       obj.SetPosition(canvasWidth, -150);
       obj.SetSize(300, 300);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
     else if( type == 4 ){
-      obj = new GraphicObject( this.object04, 0)
+      console.log('object04');
+      obj = new GraphicObject( this.object04, 10)
       obj.SetPosition(canvasWidth, -150);
       obj.SetSize(300, 300);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
@@ -51,7 +56,7 @@ class PG_TopPlayGround extends PG_PlayGround{
       obj.SetSize(250, 250);
       this.objectNum = Math.floor((Math.random()*this.objectTotal));
     }
-    if( type == 6 ){
+    else if( type == 6 ){
       obj = new GraphicObject(this.missle, 4)
       obj2 = new GraphicObject(this.alert, 5)
       var objY = Math.floor(Math.random()*canvasHeight - 120)+50

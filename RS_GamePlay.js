@@ -169,7 +169,7 @@ class PlayGameState{
           }
           else{
             this.shake = true;
-            this.player.hp -= 1;
+            this.player.hp -= 10;
             soundSystem.PlaySound("file/sound/break.wav");
           }
           break;
@@ -179,7 +179,7 @@ class PlayGameState{
           }
           else{
             this.shake = true;
-            this.player.hp -= 1;
+            this.player.hp -= 0.1;
             soundSystem.PlaySound("file/sound/break.wav");
           }
           break;

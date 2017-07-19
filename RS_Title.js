@@ -35,7 +35,7 @@ class TitleState{
     this.background.gameSpeed = 1;
     this.mode = false;
     this.modeS = false;
-    this.modeEasy = false;;
+    this.modeEasy = false;
     this.modeHard = false;
     // console.log(soundSystem);
     soundSystem.PlayBackGroundMusic("file/sound/background.mp3");
@@ -105,10 +105,7 @@ class TitleState{
       //   this.background.gameSpeed += 0.1
       //   this.background.Init();
       // }
-
     }
-
-
   }
   onMouseDown(){
     if(!this.ready){

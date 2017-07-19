@@ -44,7 +44,7 @@ function Render(){
     ctx.fillStyle    = "#ffffff";
     ctx.font         = '15px Arial';
     ctx.textBaseline = "top";
-    ctx.fillText( "fps : " + frameCounter.Lastfps, 10, 10 );
+    ctx.fillText( "fps : " + frameCounter.Lastfps, 15, canvasHeight - 25 );
   }
 }
 
@@ -55,7 +55,6 @@ function Update()
   // 업데이트
   game_state.Update();
 
-  // debugSystem.UseDebugMode();
 }
 
 function gameLoop()

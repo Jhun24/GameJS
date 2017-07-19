@@ -29,6 +29,8 @@ class PGBackground{
 
 
     this.totalCnt = 0;
+
+
     this.offsetY = 0;
     this.backOffsetX = 0;
     this.middleOffsetX = 0;
@@ -75,10 +77,16 @@ class PGBackground{
     // this.frontBackgroundArr.push(this.imgBackground08);
   }
   Init(){
+    if(mode){
+      this.totalCnt = 4;
+      console.log('Hard');
+      this.gameSpeed =1.8
+    }
     this.backgroundSpeed = 0.5 * this.gameSpeed;
     this.middleBackgroundSpeed = 2 * this.gameSpeed;
     this.frontBackgroundSpeed = 5 * this.gameSpeed;
     this.totalCnt = 0;
+
   }
   Render_back(){
     this.middleOffsetX -= this.middleBackgroundSpeed;
@@ -252,13 +260,11 @@ class PGBackground{
       {
         this.frontBackgroundArr.push(this.imgBackground08);
         this.frontBackgroundCount++;
-        console.log('여기서 끊기냐?');
       }
       else if(this.frontBackgroundCount == 1)
       {
         this.frontBackgroundArr.push(this.imgBackground06);
         this.frontBackgroundCount++;
-        console.log('여기서 끊기냐?');
       }
       else if(this.frontBackgroundCount == 2)
       {
@@ -266,7 +272,6 @@ class PGBackground{
         this.frontBackgroundCount = 0;
         this.frontBackgroundLenCount = -1;
         this.frontOffsetX = 0;
-        console.log('여기서 끊기냐?');
       }
       this.frontBackgroundArr.splice(0, 1);
       this.frontBackgroundLenCount++;

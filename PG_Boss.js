@@ -200,7 +200,7 @@ class PG_Boss{
           this.bullet.splice(i, 1);
         }
         else{
-          playGameState.Notification( 0 );
+          playGameState.Notification( 1 );
           // this.bullet.splice(i, 1);
         }
       }

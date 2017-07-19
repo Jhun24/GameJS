@@ -17,6 +17,11 @@ class GraphicObject{
     // ctx.strokeRect(this.x, this.y, this.width, this.height);
     // ctx.strokeCircle(this.x + this.width / 2, this.y + this.height / 2, this.height / 2)
     // ctx.strokeCircle(this.x + this.width / 2, this.y + this.width / 2, this.width / 2)
+    // if(this.objectType == 9 || this.objectType == 8 || this.objectType == 1 || this.objectType == 10){
+    //   // ctx.strokeRect(this.x , this.y, this.width / 2 , this.height );
+    //   ctx.strokeCircle(this.x + this.width / 2, this.y + this.width / 2, this.width / 2 - 10)
+    //   ctx.strokeCircle(this.x + this.width / 1.5, this.y + this.width / 2, this.width / 2 - 10)
+    // }
       if(this.rotate){
         ctx.save();
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2)
